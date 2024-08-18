@@ -4,113 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mike Bird - Tech Enthusiast</title>
+    <link rel="stylesheet" href="styles.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-    <style>
-      :root {
-        --primary-color: #146c94;
-        --secondary-color: #19a7ce;
-        --accent-color: #f67504;
-        --text-color: #333;
-        --bg-color: #f4f4f4;
-      }
-      body,
-      html {
-        margin: 0;
-        padding: 0;
-        font-family: "Arial", sans-serif;
-        background-color: var(--bg-color);
-        color: var(--text-color);
-        line-height: 1.6;
-      }
-      .container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
-        text-align: center;
-      }
-      header {
-        background-color: var(--primary-color);
-        color: white;
-        text-align: center;
-        padding: 2rem 0;
-        margin-bottom: 2rem;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        position: relative;
-        overflow: hidden;
-      }
-      header::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(
-          45deg,
-          var(--secondary-color),
-          var(--primary-color)
-        );
-        opacity: 0.7;
-        z-index: 1;
-      }
-      h1,
-      .subtitle {
-        position: relative;
-        z-index: 2;
-      }
-      h1 {
-        margin: 0;
-        font-size: 2.5rem;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-      }
-      .subtitle {
-        font-size: 1.2rem;
-        opacity: 0.9;
-      }
-      .profile-img {
-        width: 200px;
-        height: 200px;
-        border-radius: 50%;
-        margin: 0 auto 20px;
-        display: block;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      }
-      .links {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-        max-width: 600px;
-        margin: 0 auto;
-      }
-      .link {
-        background-color: white;
-        color: var(--primary-color);
-        padding: 15px;
-        text-decoration: none;
-        border-radius: 8px;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-      }
-      .link:hover {
-        background-color: var(--secondary-color);
-        color: white;
-        transform: translateY(-3px);
-        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-      }
-      .link i {
-        margin-right: 10px;
-        font-size: 1.2em;
-      }
-      @media (max-width: 600px) {
-        .links {
-          grid-template-columns: 1fr;
-        }
-      }
-    </style>
   </head>
   <body>
     <header>
@@ -118,37 +13,45 @@
       <p class="subtitle">AI Tooling and Engineering</p>
     </header>
     <div class="container">
-      <img src="me.png" alt="Mike Bird" class="profile-img" />
+      <div class="profile-img">
+        <img src="me.png" alt="Mike Bird" />
+      </div>
       <div class="links">
         <a href="https://cal.com/MikeBird" class="link" target="_blank">
-          <i class="far fa-calendar-alt"></i> Schedule a Meeting
+          <i class="far fa-calendar-alt"></i>
+          <span>Schedule a Meeting</span>
         </a>
         <a
           href="https://www.youtube.com/@ToolUseAI"
           class="link"
           target="_blank"
         >
-          <i class="fas fa-podcast"></i> Tool Use Podcast
+          <i class="fas fa-podcast"></i>
+          <span>Tool Use Podcast</span>
         </a>
         <a href="https://github.com/MikeBirdTech" class="link" target="_blank">
-          <i class="fab fa-github"></i> GitHub
+          <i class="fab fa-github"></i>
+          <span>GitHub</span>
         </a>
         <a href="https://x.com/MikeBirdTech" class="link" target="_blank">
-          <i class="fab fa-twitter"></i> Twitter
+          <i class="fab fa-twitter"></i>
+          <span>Twitter</span>
         </a>
         <a
           href="https://www.linkedin.com/in/mikebirdtech/"
           class="link"
           target="_blank"
         >
-          <i class="fab fa-linkedin"></i> LinkedIn
+          <i class="fab fa-linkedin"></i>
+          <span>LinkedIn</span>
         </a>
         <a
           href="https://www.youtube.com/@MikeBirdTech/"
           class="link"
           target="_blank"
         >
-          <i class="fab fa-youtube"></i> YouTube
+          <i class="fab fa-youtube"></i>
+          <span>YouTube</span>
         </a>
       </div>
     </div>
