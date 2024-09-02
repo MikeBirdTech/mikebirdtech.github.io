@@ -17,55 +17,25 @@ html {
   background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.02' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
 }
 
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  text-align: center;
-}
-
 header {
-  background-color: var(--primary-color);
-  color: white;
-  text-align: center;
-  padding: 2rem 0;
+  width: 100%;
+  padding-top: 28.125%; /* This creates a 16:9 aspect ratio */
+  background-color: transparent;
+  background-image: url("img/banner.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   margin-bottom: 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   position: relative;
-  overflow: hidden;
 }
 
-header::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    45deg,
-    var(--secondary-color),
-    var(--primary-color)
-  );
-  opacity: 0.7;
-  z-index: 1;
-}
-
-h1,
-.subtitle {
+.container {
+  max-width: 800px;
+  margin: -150px auto 0;
+  padding: 20px;
   position: relative;
   z-index: 2;
-}
-
-h1 {
-  margin: 0;
-  font-size: 2.5rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.subtitle {
-  font-size: 1.2rem;
-  opacity: 0.9;
 }
 
 .profile-img {
@@ -77,6 +47,8 @@ h1 {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  /* background-color: white; */
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
 }
 
 .profile-img img {
@@ -89,44 +61,68 @@ h1 {
 
 .links {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
+  grid-template-columns: 1fr;
+  gap: 20px;
   max-width: 600px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 .link {
-  background-color: white;
+  background-color: #e0e0e0; /* Solid grey background */
   color: var(--primary-color);
   padding: 15px;
   text-decoration: none;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: none; /* Remove any border */
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.8); /* Black shadow */
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
+  transition: all 0.2s ease;
+  transform: translate(-4px, -4px);
 }
 
 .link:hover {
-  background-color: var(--secondary-color);
-  color: white;
-  transform: translateY(-3px);
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.8);
 }
 
-.link i {
-  margin-right: 10px;
-  font-size: 1.2em;
+.link:active {
+  transform: translate(0, 0);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.8);
 }
 
-.link span {
-  margin-left: 5px; /* Add space between icon and text */
-}
+@media (max-width: 768px) {
+  header {
+    padding-top: 56.25%; /* This creates a 16:9 aspect ratio for smaller screens */
+  }
 
-@media (max-width: 600px) {
+  .container {
+    margin-top: -100px;
+  }
+
+  .profile-img {
+    width: 200px;
+    height: 200px;
+  }
+
   .links {
-    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .link {
+    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.8);
+    transform: translate(-3px, -3px);
+  }
+
+  .link:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.8);
+  }
+
+  .link:active {
+    transform: translate(0, 0);
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.8);
   }
 }
