@@ -3,56 +3,94 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mike Bird - Tech Enthusiast</title>
-    <link rel="stylesheet" href="styles.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-  </head>
-  <body>
-    <div>
-      <header></header>
+    <title>Mike Bird</title>
 
-      <div class="container">
+    <!-- Example: a clean, modern Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome for icons -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"
+      defer
+    ></script>
+
+    <!-- Your custom styles -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <!-- HERO with Banner Image -->
+    <header class="hero">
+      <div class="banner-image"></div>
+
+      <div class="hero-content">
         <div class="profile-img">
+          <!-- Replace with your headshot path or URL -->
           <img src="me.png" alt="Mike Bird" />
         </div>
 
-        <div class="links">
-          <a href="https://cal.com/MikeBird" class="link" target="_blank">
-            <i class="fas fa-calendar"></i> Schedule a Meeting
-          </a>
-          <a
-            href="https://www.youtube.com/@ToolUseAI"
-            class="link"
-            target="_blank"
-          >
-            <i class="fas fa-podcast"></i> Tool Use Podcast
-          </a>
-          <a
-            href="https://github.com/MikeBirdTech"
-            class="link"
-            target="_blank"
-          >
-            <i class="fab fa-github"></i> GitHub
-          </a>
-          <a href="https://x.com/MikeBirdTech" class="link" target="_blank">
-            <i class="fab fa-twitter"></i> Twitter
-          </a>
-          <a
-            href="https://www.linkedin.com/in/mikebirdtech/"
-            class="link"
-            target="_blank"
-          >
-            <i class="fab fa-linkedin"></i> LinkedIn
-          </a>
-          <a
-            href="https://www.youtube.com/@MikeBirdTech/"
-            class="link"
-            target="_blank"
-          >
-            <i class="fab fa-youtube"></i> YouTube
-          </a>
-        </div>
+        <h1 class="name">Mike Bird</h1>
+        <h2 class="subtitle">CEO @ Anetic | Host @ Tool Use</h2>
+        <p class="tagline">Helping you thrive in the age of AI</p>
       </div>
-    </div>
+    </header>
+
+    <main class="links-section">
+      <div class="links">
+        <a href="https://cal.com/MikeBird" class="link" target="_blank">
+          <i class="fa-solid fa-briefcase"></i>
+          Schedule a Meeting
+        </a>
+        <a href="https://anetic.co" class="link" target="_blank">
+          <i class="fa-solid fa-globe"></i>
+          Anetic
+        </a>
+        <a
+          href="https://www.youtube.com/@ToolUseAI"
+          class="link"
+          target="_blank"
+        >
+          <i class="fa-solid fa-podcast"></i>
+          Tool Use Podcast
+        </a>
+        <a href="https://github.com/MikeBirdTech" class="link" target="_blank">
+          <i class="fab fa-github"></i>
+          GitHub
+        </a>
+        <a href="https://x.com/MikeBirdTech" class="link" target="_blank">
+          <i class="fab fa-twitter"></i>
+          X (Twitter)
+        </a>
+        <a
+          href="https://www.linkedin.com/in/mikebirdtech/"
+          class="link"
+          target="_blank"
+        >
+          <i class="fab fa-linkedin"></i>
+          LinkedIn
+        </a>
+        <a
+          href="https://www.youtube.com/@MikeBirdTech/"
+          class="link"
+          target="_blank"
+        >
+          <i class="fab fa-youtube"></i>
+          YouTube
+        </a>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>&copy; <span id="year"></span> Mike Bird</p>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>
