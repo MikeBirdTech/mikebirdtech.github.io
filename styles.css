@@ -3,15 +3,16 @@
 ----------------------------------------- */
 :root {
   --font-body: "Inter", sans-serif;
-  /* Adjust these gradient colors for a smoother, subtle transition */
-  --gradient-start: #0d1f3d;
-  --gradient-end: #182c4a;
-  --text-color: #ffffff;
+  /* Refined gradient colors for a smoother, modern look */
+  --gradient-start: #1a2a45; /* Slightly adjusted */
+  --gradient-end: #1f385e; /* Slightly adjusted */
+  --text-color: #e0e8f4; /* Softer white */
 
   /* This is brighter than before so the circle stands out */
-  --profile-border-color: #2dd1f5;
-  --accent-link-bg: #2a395a;
-  --hover-bg: #48d2f7;
+  --profile-border-color: #34bdeb; /* Slightly softer blue */
+  --accent-link-bg: #2b3d5e; /* Adjusted link background */
+  --hover-bg: #4cc9f0; /* Adjusted hover color */
+  --hover-text-color: #0a192f; /* Dark text on hover */
 }
 
 * {
@@ -22,8 +23,9 @@
 
 body {
   font-family: var(--font-body);
+  /* Adjusted gradient angle and colors */
   background: linear-gradient(
-    180deg,
+    160deg, 
     var(--gradient-start) 0%,
     var(--gradient-end) 100%
   );
@@ -45,9 +47,9 @@ body {
 .banner-image {
   width: 100%;
   height: 220px;
-  background: url("banner.png") center/cover no-repeat;
-  /* If no banner.jpg, use a fallback color or gradient:
-     background: linear-gradient( ... ) */
+  background: url("banner.svg") center/cover no-repeat;
+  /* Fallback color if SVG doesn't load */
+  background-color: var(--gradient-start);
 }
 
 /* The content (headshot + text) overlaps the banner */
@@ -62,13 +64,13 @@ body {
 .profile-img {
   width: 140px;
   height: 140px;
-  margin: 0 auto 1rem;
+  margin: 0 auto 1.5rem; /* Increased bottom margin */
   border-radius: 50%;
   overflow: hidden;
 
   /* Brighter ring around the headshot */
   border: 4px solid var(--profile-border-color);
-  box-shadow: 0 0 20px rgba(45, 209, 245, 0.3);
+  box-shadow: 0 0 25px rgba(52, 189, 235, 0.35); /* Slightly enhanced shadow */
 }
 
 .profile-img img {
@@ -78,20 +80,20 @@ body {
 }
 
 .name {
-  font-size: 1.75rem;
+  font-size: 2rem; /* Slightly larger */
   font-weight: 600;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.35rem; /* Adjusted spacing */
 }
 
 .subtitle {
-  font-size: 1rem;
-  color: #c4def4;
-  margin-bottom: 0.5rem;
+  font-size: 1.1rem; /* Slightly larger */
+  color: #b0c8e4; /* Adjusted color */
+  margin-bottom: 0.75rem; /* Adjusted spacing */
 }
 
 .tagline {
-  font-size: 0.95rem;
-  color: #dce6f2;
+  font-size: 1rem; /* Slightly larger */
+  color: #c8d8ec; /* Adjusted color */
 }
 
 /* -----------------------------------------
@@ -101,13 +103,13 @@ body {
   flex: 1; /* push footer down */
   display: flex;
   justify-content: center;
-  padding: 2rem 1rem 3rem; /* extra bottom padding for comfort */
+  padding: 2rem 1rem 4rem; /* Increased bottom padding */
 }
 
 .links {
   display: grid;
   row-gap: 0.75rem;
-  max-width: 320px;
+  max-width: 600px;
   width: 100%;
 }
 
@@ -116,23 +118,34 @@ body {
   justify-content: center;
   align-items: center;
   background-color: var(--accent-link-bg);
-  border-radius: 4px;
-  padding: 0.75rem;
+  border-radius: 6px; /* Slightly more rounded */
+  padding: 0.85rem 1rem; /* Adjusted padding */
   text-decoration: none;
   color: var(--text-color);
-  transition: background-color 0.2s, transform 0.2s;
+  transition: background-color 0.25s ease-out, transform 0.2s ease-out, box-shadow 0.25s ease-out;
   font-weight: 500;
   text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Added subtle shadow */
 }
 
 .link i {
-  margin-right: 0.5rem;
+  display: inline-block; /* Ensure block-like behavior for margin */
+  width: 1.1em;
+  text-align: center;
+  vertical-align: middle; /* Align icon vertically with text */
+}
+
+/* Add margin to the text span instead */
+.link span {
+  margin-left: 0.375rem; /* Reduced space */
+  vertical-align: middle; /* Ensure vertical alignment with icon */
 }
 
 .link:hover {
   background-color: var(--hover-bg);
-  color: #000;
-  transform: translateY(-2px);
+  color: var(--hover-text-color);
+  transform: translateY(-3px); /* Slightly more lift */
+  box-shadow: 0 5px 10px rgba(76, 201, 240, 0.3); /* Enhanced shadow on hover */
 }
 
 /* -----------------------------------------
