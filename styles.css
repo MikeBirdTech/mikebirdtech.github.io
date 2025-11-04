@@ -1,18 +1,14 @@
 /* -----------------------------------------
-   ROOT & GLOBAL STYLES
+   TERMINAL THEME - ROOT & GLOBAL STYLES
 ----------------------------------------- */
 :root {
-  --font-body: "Inter", sans-serif;
-  /* Refined gradient colors for a smoother, modern look */
-  --gradient-start: #1a2a45; /* Slightly adjusted */
-  --gradient-end: #1f385e; /* Slightly adjusted */
-  --text-color: #e0e8f4; /* Softer white */
-
-  /* This is brighter than before so the circle stands out */
-  --profile-border-color: #34bdeb; /* Slightly softer blue */
-  --accent-link-bg: #2b3d5e; /* Adjusted link background */
-  --hover-bg: #4cc9f0; /* Adjusted hover color */
-  --hover-text-color: #0a192f; /* Dark text on hover */
+  --terminal-bg: #000000;
+  --terminal-green: #00ff41;
+  --terminal-green-dim: #00aa2b;
+  --terminal-green-bright: #39ff14;
+  --terminal-border: #1a1a1a;
+  --terminal-header-bg: #2d2d2d;
+  --font-terminal: 'Courier Prime', 'Courier New', monospace;
 }
 
 * {
@@ -22,138 +18,316 @@
 }
 
 body {
-  font-family: var(--font-body);
-  /* Adjusted gradient angle and colors */
-  background: linear-gradient(
-    160deg, 
-    var(--gradient-start) 0%,
-    var(--gradient-end) 100%
-  );
-  color: var(--text-color);
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-/* -----------------------------------------
-   HERO SECTION
------------------------------------------ */
-.hero {
-  position: relative;
-  text-align: center;
-}
-
-/* Banner image at top */
-.banner-image {
-  width: 100%;
-  height: 220px;
-  background: url("banner.svg") center/cover no-repeat;
-  /* Fallback color if SVG doesn't load */
-  background-color: var(--gradient-start);
-}
-
-/* The content (headshot + text) overlaps the banner */
-.hero-content {
-  position: relative;
-  top: -70px; /* Adjust to move the circle so it overlaps banner */
-  margin: 0 auto;
-  max-width: 600px;
-  padding: 0 1rem 2rem;
-}
-
-.profile-img {
-  width: 140px;
-  height: 140px;
-  margin: 0 auto 1.5rem; /* Increased bottom margin */
-  border-radius: 50%;
-  overflow: hidden;
-
-  /* Brighter ring around the headshot */
-  border: 4px solid var(--profile-border-color);
-  box-shadow: 0 0 25px rgba(52, 189, 235, 0.35); /* Slightly enhanced shadow */
-}
-
-.profile-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.name {
-  font-size: 2rem; /* Slightly larger */
-  font-weight: 600;
-  margin-bottom: 0.35rem; /* Adjusted spacing */
-}
-
-.subtitle {
-  font-size: 1.1rem; /* Slightly larger */
-  color: #b0c8e4; /* Adjusted color */
-  margin-bottom: 0.75rem; /* Adjusted spacing */
-}
-
-.tagline {
-  font-size: 1rem; /* Slightly larger */
-  color: #c8d8ec; /* Adjusted color */
-}
-
-/* -----------------------------------------
-   LINKS SECTION
------------------------------------------ */
-.links-section {
-  flex: 1; /* push footer down */
-  display: flex;
-  justify-content: center;
-  padding: 2rem 1rem 4rem; /* Increased bottom padding */
-}
-
-.links {
-  display: grid;
-  row-gap: 0.75rem;
-  max-width: 600px;
-  width: 100%;
-}
-
-.link {
+  font-family: var(--font-terminal);
+  background: var(--terminal-bg);
+  color: var(--terminal-green);
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--accent-link-bg);
-  border-radius: 6px; /* Slightly more rounded */
-  padding: 0.85rem 1rem; /* Adjusted padding */
+  min-height: 100vh;
+  padding: 20px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* CRT Scanline effect overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    transparent 0%,
+    rgba(0, 255, 65, 0.02) 50%,
+    transparent 100%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 1000;
+  animation: scanline 8s linear infinite;
+}
+
+@keyframes scanline {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 100%;
+  }
+}
+
+/* -----------------------------------------
+   TERMINAL WINDOW
+----------------------------------------- */
+.terminal {
+  max-width: 900px;
+  width: 100%;
+  background: var(--terminal-bg);
+  border: 2px solid var(--terminal-green-dim);
+  border-radius: 8px;
+  box-shadow:
+    0 0 20px rgba(0, 255, 65, 0.3),
+    inset 0 0 100px rgba(0, 255, 65, 0.02);
+  overflow: hidden;
+  position: relative;
+  animation: terminal-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes terminal-glow {
+  0% {
+    box-shadow:
+      0 0 20px rgba(0, 255, 65, 0.3),
+      inset 0 0 100px rgba(0, 255, 65, 0.02);
+  }
+  100% {
+    box-shadow:
+      0 0 30px rgba(0, 255, 65, 0.4),
+      inset 0 0 100px rgba(0, 255, 65, 0.03);
+  }
+}
+
+/* Terminal header with buttons */
+.terminal-header {
+  background: var(--terminal-header-bg);
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--terminal-green-dim);
+}
+
+.terminal-buttons {
+  display: flex;
+  gap: 8px;
+  margin-right: 15px;
+}
+
+.btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.btn.close {
+  background: #ff5f56;
+}
+
+.btn.minimize {
+  background: #ffbd2e;
+}
+
+.btn.maximize {
+  background: #27c93f;
+}
+
+.terminal-title {
+  color: var(--terminal-green-dim);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* -----------------------------------------
+   TERMINAL BODY
+----------------------------------------- */
+.terminal-body {
+  padding: 30px;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+/* Terminal lines */
+.terminal-line {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.prompt {
+  color: var(--terminal-green-bright);
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+.command {
+  color: var(--terminal-green);
+}
+
+.cursor {
+  color: var(--terminal-green-bright);
+  font-weight: bold;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+/* Output sections */
+.output {
+  margin: 15px 0 25px 0;
+  padding-left: 10px;
+}
+
+/* ASCII art box */
+.ascii-art {
+  color: var(--terminal-green);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  white-space: pre;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
+}
+
+/* -----------------------------------------
+   LINKS STYLING (FILE LIST)
+----------------------------------------- */
+.links-output {
+  margin: 20px 0;
+}
+
+.file-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.file-link {
+  display: flex;
+  align-items: center;
+  color: var(--terminal-green);
   text-decoration: none;
-  color: var(--text-color);
-  transition: background-color 0.25s ease-out, transform 0.2s ease-out, box-shadow 0.25s ease-out;
-  font-weight: 500;
-  text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Added subtle shadow */
+  padding: 12px 15px;
+  border: 1px solid var(--terminal-green-dim);
+  border-radius: 4px;
+  background: rgba(0, 255, 65, 0.03);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.link i {
-  display: inline-block; /* Ensure block-like behavior for margin */
-  width: 1.1em;
-  text-align: center;
-  vertical-align: middle; /* Align icon vertically with text */
+.file-link::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 3px;
+  background: var(--terminal-green-bright);
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
 }
 
-/* Add margin to the text span instead */
-.link span {
-  margin-left: 0.375rem; /* Reduced space */
-  vertical-align: middle; /* Ensure vertical alignment with icon */
+.file-link:hover::before {
+  transform: scaleY(1);
 }
 
-.link:hover {
-  background-color: var(--hover-bg);
-  color: var(--hover-text-color);
-  transform: translateY(-3px); /* Slightly more lift */
-  box-shadow: 0 5px 10px rgba(76, 201, 240, 0.3); /* Enhanced shadow on hover */
+.file-link:hover {
+  background: rgba(0, 255, 65, 0.1);
+  border-color: var(--terminal-green-bright);
+  transform: translateX(5px);
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+}
+
+.file-icon {
+  font-size: 1.2rem;
+  margin-right: 12px;
+  filter: grayscale(50%);
+}
+
+.file-link:hover .file-icon {
+  filter: grayscale(0%);
+  animation: icon-bounce 0.5s ease;
+}
+
+@keyframes icon-bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+.file-name {
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.file-link:hover .file-name {
+  color: var(--terminal-green-bright);
+  text-shadow: 0 0 8px rgba(0, 255, 65, 0.8);
 }
 
 /* -----------------------------------------
    FOOTER
 ----------------------------------------- */
-.footer {
+.footer-line {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--terminal-green-dim);
   text-align: center;
-  padding: 1rem 0;
+  color: var(--terminal-green-dim);
   font-size: 0.85rem;
-  opacity: 0.7;
+}
+
+/* -----------------------------------------
+   RESPONSIVE DESIGN
+----------------------------------------- */
+@media (max-width: 768px) {
+  .terminal-body {
+    padding: 20px;
+    font-size: 0.9rem;
+  }
+
+  .ascii-art {
+    font-size: 0.7rem;
+  }
+
+  .terminal-title {
+    font-size: 0.8rem;
+  }
+
+  .file-link {
+    padding: 10px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+
+  .terminal-body {
+    padding: 15px;
+    font-size: 0.85rem;
+  }
+
+  .ascii-art {
+    font-size: 0.6rem;
+  }
+
+  .file-name {
+    font-size: 0.9rem;
+  }
+}
+
+/* -----------------------------------------
+   ACCESSIBILITY
+----------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
