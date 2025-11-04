@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mike Bird</title>
 
-    <!-- Example: a clean, modern Google Font -->
+    <!-- Monospace terminal font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=VT323&display=swap"
       rel="stylesheet"
     />
 
@@ -35,69 +35,91 @@
   </head>
 
   <body>
-    <!-- HERO with Banner Image -->
-    <header class="hero">
-      <div class="banner-image"></div>
+    <div class="terminal">
+      <div class="terminal-header">
+        <div class="terminal-buttons">
+          <span class="btn close"></span>
+          <span class="btn minimize"></span>
+          <span class="btn maximize"></span>
+        </div>
+        <div class="terminal-title">mikebird@terminal: ~</div>
+      </div>
 
-      <div class="hero-content">
-        <div class="profile-img">
-          <!-- Replace with your headshot path or URL -->
-          <img src="me.png" alt="Mike Bird" />
+      <div class="terminal-body">
+        <div class="terminal-line">
+          <span class="prompt">guest@mikebird:~$</span>
+          <span class="command">cat info.txt</span>
         </div>
 
-        <h1 class="name">Mike Bird</h1>
-        <h2 class="subtitle">Host @ Tool Use Podcast</h2>
-        <p class="tagline">Helping you interface with the future of AI</p>
-      </div>
-    </header>
+        <div class="output">
+          <div class="ascii-art">
+  ╔═══════════════════════════════════════════╗
+  ║                                           ║
+  ║            MIKE BIRD                      ║
+  ║                                           ║
+  ║   Host @ Tool Use Podcast                 ║
+  ║   AI and Engineering Lead @ BoxOne        ║
+  ║                                           ║
+  ║   Helping you interface with the          ║
+  ║   future of AI                            ║
+  ║                                           ║
+  ╚═══════════════════════════════════════════╝
+          </div>
+        </div>
 
-    <main class="links-section">
-      <div class="links">
-        <a href="https://cal.com/MikeBird" class="link" target="_blank">
-          <i class="fa-solid fa-briefcase"></i>
-          <span>Schedule a Meeting</span>
-        </a>
-        <a
-          href="https://www.youtube.com/@ToolUsePodcast"
-          class="link"
-          target="_blank"
-        >
-          <i class="fa-solid fa-podcast"></i>
-          <span>Tool Use Podcast</span>
-        </a>
-        <a href="https://github.com/MikeBirdTech" class="link" target="_blank">
-          <i class="fab fa-github"></i>
-          <span>GitHub</span>
-        </a>
-        <a href="https://x.com/MikeBirdTech" class="link" target="_blank">
-          <i class="fab fa-twitter"></i>
-          <span>X (Twitter)</span>
-        </a>
-        <a
-          href="https://www.linkedin.com/in/mikebirdtech/"
-          class="link"
-          target="_blank"
-        >
-          <i class="fab fa-linkedin"></i>
-          <span>LinkedIn</span>
-        </a>
-        <a
-          href="https://www.youtube.com/@MikeBirdTech/"
-          class="link"
-          target="_blank"
-        >
-          <i class="fab fa-youtube"></i>
-          <span>YouTube</span>
-        </a>
-      </div>
-    </main>
+        <div class="terminal-line">
+          <span class="prompt">guest@mikebird:~$</span>
+          <span class="command">ls -la links/</span>
+        </div>
 
-    <footer class="footer">
-      <p>&copy; <span id="year"></span> Mike Bird</p>
-    </footer>
+        <div class="output links-output">
+          <div class="file-list">
+            <a href="https://cal.com/MikeBird" class="file-link" target="_blank">
+              <span class="file-icon">📅</span>
+              <span class="file-name">schedule-meeting.sh</span>
+            </a>
+            <a href="https://www.youtube.com/@ToolUsePodcast" class="file-link" target="_blank">
+              <span class="file-icon">🎙️</span>
+              <span class="file-name">tool-use-podcast.sh</span>
+            </a>
+            <a href="https://github.com/MikeBirdTech" class="file-link" target="_blank">
+              <span class="file-icon">💻</span>
+              <span class="file-name">github.sh</span>
+            </a>
+            <a href="https://x.com/MikeBirdTech" class="file-link" target="_blank">
+              <span class="file-icon">🐦</span>
+              <span class="file-name">x-twitter.sh</span>
+            </a>
+            <a href="https://www.linkedin.com/in/mikebirdtech/" class="file-link" target="_blank">
+              <span class="file-icon">💼</span>
+              <span class="file-name">linkedin.sh</span>
+            </a>
+            <a href="https://www.youtube.com/@MikeBirdTech/" class="file-link" target="_blank">
+              <span class="file-icon">📺</span>
+              <span class="file-name">youtube.sh</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="terminal-line">
+          <span class="prompt">guest@mikebird:~$</span>
+          <span class="cursor">█</span>
+        </div>
+
+        <div class="footer-line">
+          <p>© <span id="year"></span> Mike Bird | System uptime: <span id="uptime">∞</span> days</p>
+        </div>
+      </div>
+    </div>
 
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Blinking cursor animation
+      setInterval(() => {
+        const cursor = document.querySelector('.cursor');
+        cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
+      }, 500);
     </script>
   </body>
 </html>
