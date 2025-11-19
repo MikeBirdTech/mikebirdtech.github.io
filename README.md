@@ -1,14 +1,23 @@
-# Personal Link Page
+# Terminal-Themed Personal Page
 
-This is a simple, single-page website designed to act as a personal hub, linking to various online profiles and resources.
+A retro terminal-themed personal website with a CRT screen aesthetic, featuring animated text loading and interactive file links.
 
 ## Structure
 
-*   `index.html`: The main HTML file containing the page structure and content.
-*   `styles.css`: Contains all the styling rules for the page.
-*   `me.png`: Profile picture image.
-*   `banner.png`: Banner image for the header.
+*   `index.html`: The main HTML file containing the terminal structure and content
+*   `styles.css`: Terminal theme styling with animations and responsive design
+*   `me.png`: Profile picture used in Open Graph metadata
+*   `llms.txt`: AI-readable site information
+
+## Features
+
+- Retro terminal interface with green phosphor text
+- CRT scanline effect overlay
+- Breathing border glow animation
+- Typewriter-style text loading animation
+- Interactive file links with hover effects
+- Fully responsive design for mobile and desktop
 
 ## Viewing
 
-Simply open the `index.html` file in a web browser to view the page.
+Open `index.html` in a web browser or visit [mikebirdtech.com](https://mikebirdtech.com)

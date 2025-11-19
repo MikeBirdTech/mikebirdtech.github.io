@@ -28,6 +28,8 @@ body {
   padding: 20px;
   position: relative;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* CRT Scanline effect overlay */
@@ -72,19 +74,23 @@ body::before {
     inset 0 0 100px rgba(0, 255, 65, 0.02);
   overflow: hidden;
   position: relative;
-  animation: terminal-glow 2s ease-in-out infinite alternate;
+  animation: terminal-breathe 3.5s ease-in-out infinite;
 }
 
-@keyframes terminal-glow {
-  0% {
+@keyframes terminal-breathe {
+  0%, 100% {
     box-shadow:
-      0 0 20px rgba(0, 255, 65, 0.3),
+      0 0 15px rgba(0, 255, 65, 0.2),
+      0 0 30px rgba(0, 255, 65, 0.15),
       inset 0 0 100px rgba(0, 255, 65, 0.02);
+    border-color: var(--terminal-green-dim);
   }
-  100% {
+  50% {
     box-shadow:
-      0 0 30px rgba(0, 255, 65, 0.4),
-      inset 0 0 100px rgba(0, 255, 65, 0.03);
+      0 0 25px rgba(0, 255, 65, 0.4),
+      0 0 50px rgba(0, 255, 65, 0.25),
+      inset 0 0 100px rgba(0, 255, 65, 0.04);
+    border-color: rgba(0, 170, 43, 0.8);
   }
 }
 
