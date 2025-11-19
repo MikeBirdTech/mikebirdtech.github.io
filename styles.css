@@ -135,6 +135,7 @@ body::before {
   padding: 30px;
   line-height: 1.6;
   font-size: 1rem;
+  min-height: 600px;
 }
 
 /* Terminal content animation */
@@ -300,6 +301,7 @@ body::before {
   .terminal-body {
     padding: 20px;
     font-size: 0.95rem;
+    min-height: 550px;
   }
 
   .ascii-art {
@@ -324,6 +326,7 @@ body::before {
   .terminal-body {
     padding: 15px;
     font-size: 0.9rem;
+    min-height: 500px;
   }
 
   .ascii-art {
