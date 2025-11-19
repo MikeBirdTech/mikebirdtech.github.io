@@ -46,13 +46,14 @@
       </div>
 
       <div class="terminal-body">
-        <div class="terminal-line">
-          <span class="prompt">guest@mikebird:~$</span>
-          <span class="command">cat info.txt</span>
-        </div>
+        <div class="terminal-content">
+          <div class="terminal-line">
+            <span class="prompt">guest@mikebird:~$</span>
+            <span class="command">cat info.txt</span>
+          </div>
 
-        <div class="output">
-          <div class="ascii-art">
+          <div class="output">
+            <div class="ascii-art">
   ╔═══════════════════════════════════════════╗
   ║                                           ║
   ║            MIKE BIRD                      ║
@@ -64,56 +65,63 @@
   ║   future of AI                            ║
   ║                                           ║
   ╚═══════════════════════════════════════════╝
+            </div>
           </div>
-        </div>
 
-        <div class="terminal-line">
-          <span class="prompt">guest@mikebird:~$</span>
-          <span class="command">ls -la links/</span>
-        </div>
-
-        <div class="output links-output">
-          <div class="file-list">
-            <a href="https://cal.com/MikeBird" class="file-link" target="_blank">
-              <span class="file-icon">📅</span>
-              <span class="file-name">schedule-meeting.sh</span>
-            </a>
-            <a href="https://www.youtube.com/@ToolUsePodcast" class="file-link" target="_blank">
-              <span class="file-icon">🎙️</span>
-              <span class="file-name">tool-use-podcast.sh</span>
-            </a>
-            <a href="https://github.com/MikeBirdTech" class="file-link" target="_blank">
-              <span class="file-icon">💻</span>
-              <span class="file-name">github.sh</span>
-            </a>
-            <a href="https://x.com/MikeBirdTech" class="file-link" target="_blank">
-              <span class="file-icon">🐦</span>
-              <span class="file-name">x-twitter.sh</span>
-            </a>
-            <a href="https://www.linkedin.com/in/mikebirdtech/" class="file-link" target="_blank">
-              <span class="file-icon">💼</span>
-              <span class="file-name">linkedin.sh</span>
-            </a>
-            <a href="https://www.youtube.com/@MikeBirdTech/" class="file-link" target="_blank">
-              <span class="file-icon">📺</span>
-              <span class="file-name">youtube.sh</span>
-            </a>
+          <div class="terminal-line">
+            <span class="prompt">guest@mikebird:~$</span>
+            <span class="command">ls -la links/</span>
           </div>
-        </div>
 
-        <div class="terminal-line">
-          <span class="prompt">guest@mikebird:~$</span>
-          <span class="cursor">█</span>
-        </div>
+          <div class="output links-output">
+            <div class="file-list">
+              <a href="https://cal.com/MikeBird" class="file-link" target="_blank">
+                <span class="file-icon">📅</span>
+                <span class="file-name">schedule-meeting</span>
+              </a>
+              <a href="https://www.youtube.com/@ToolUsePodcast" class="file-link" target="_blank">
+                <span class="file-icon">🎙️</span>
+                <span class="file-name">tool-use-podcast</span>
+              </a>
+              <a href="https://github.com/MikeBirdTech" class="file-link" target="_blank">
+                <span class="file-icon">💻</span>
+                <span class="file-name">github</span>
+              </a>
+              <a href="https://x.com/MikeBirdTech" class="file-link" target="_blank">
+                <span class="file-icon">🐦</span>
+                <span class="file-name">x-twitter</span>
+              </a>
+              <a href="https://www.linkedin.com/in/mikebirdtech/" class="file-link" target="_blank">
+                <span class="file-icon">💼</span>
+                <span class="file-name">linkedin</span>
+              </a>
+              <a href="https://www.youtube.com/@MikeBirdTech/" class="file-link" target="_blank">
+                <span class="file-icon">📺</span>
+                <span class="file-name">youtube</span>
+              </a>
+            </div>
+          </div>
 
-        <div class="footer-line">
-          <p>© <span id="year"></span> Mike Bird | System uptime: <span id="uptime">∞</span> days</p>
+          <div class="terminal-line">
+            <span class="prompt">guest@mikebird:~$</span>
+            <span class="cursor">█</span>
+          </div>
+
+          <div class="footer-line">
+            <p>© <span id="year"></span> Mike Bird | System uptime: <span id="uptime">∞</span> days</p>
+          </div>
         </div>
       </div>
     </div>
 
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Show terminal content after 500ms delay
+      setTimeout(() => {
+        const content = document.querySelector('.terminal-content');
+        content.classList.add('visible');
+      }, 500);
 
       // Blinking cursor animation
       setInterval(() => {
