@@ -194,7 +194,6 @@ body::before {
   white-space: pre;
   letter-spacing: 0.05em;
   text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
-  overflow-x: auto;
 }
 
 /* -----------------------------------------
