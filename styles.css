@@ -28,6 +28,8 @@ body {
   padding: 20px;
   position: relative;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* CRT Scanline effect overlay */
