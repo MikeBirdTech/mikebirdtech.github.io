@@ -168,7 +168,12 @@ body::before {
 .cursor {
   color: var(--terminal-green-bright);
   font-weight: bold;
-  animation: blink 1s step-end infinite;
+}
+
+/* Temporary cursors don't auto-blink (controlled by JS) */
+.temp-cursor {
+  color: var(--terminal-green-bright);
+  font-weight: bold;
 }
 
 @keyframes blink {

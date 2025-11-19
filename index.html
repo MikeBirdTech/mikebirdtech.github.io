@@ -47,12 +47,15 @@
 
       <div class="terminal-body">
         <div class="terminal-content">
+          <!-- First prompt line - always visible -->
           <div class="terminal-line">
             <span class="prompt">guest@mikebird:~$</span>
-            <span class="command">cat info.txt</span>
+            <span class="cursor temp-cursor" id="cursor-1">█</span>
+            <span class="command" id="cmd-1">cat info.txt</span>
           </div>
 
-          <div class="output">
+          <!-- Info output block -->
+          <div class="output" id="info-output">
             <div class="ascii-art">
   ╔═══════════════════════════════════════════╗
   ║                                           ║
@@ -68,12 +71,15 @@
             </div>
           </div>
 
-          <div class="terminal-line">
+          <!-- Second prompt line -->
+          <div class="terminal-line" id="prompt-2">
             <span class="prompt">guest@mikebird:~$</span>
-            <span class="command">ls -la links/</span>
+            <span class="cursor temp-cursor" id="cursor-2">█</span>
+            <span class="command" id="cmd-2">ls -la links/</span>
           </div>
 
-          <div class="output links-output">
+          <!-- Links output block -->
+          <div class="output links-output" id="links-output">
             <div class="file-list">
               <a href="https://cal.com/MikeBird" class="file-link" target="_blank">
                 <span class="file-icon">📅</span>
@@ -102,9 +108,10 @@
             </div>
           </div>
 
-          <div class="terminal-line">
+          <!-- Final prompt line with continuous cursor -->
+          <div class="terminal-line" id="final-prompt">
             <span class="prompt">guest@mikebird:~$</span>
-            <span class="cursor">█</span>
+            <span class="cursor" id="cursor-final">█</span>
           </div>
 
           <div class="footer-line">
@@ -117,17 +124,83 @@
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
 
-      // Show terminal content after 500ms delay
-      setTimeout(() => {
+      // Animation sequence
+      function startTerminalAnimation() {
+        // Make terminal content visible immediately
         const content = document.querySelector('.terminal-content');
         content.classList.add('visible');
-      }, 500);
 
-      // Blinking cursor animation
-      setInterval(() => {
-        const cursor = document.querySelector('.cursor');
-        cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
-      }, 500);
+        // Initially hide elements that will appear during animation
+        const elementsToHide = ['cmd-1', 'info-output', 'prompt-2', 'cmd-2', 'links-output', 'final-prompt'];
+        elementsToHide.forEach(id => {
+          document.getElementById(id).style.display = 'none';
+        });
+
+        // Helper function to blink cursor a specific number of times
+        function blinkCursor(cursorId, times, callback) {
+          const cursor = document.getElementById(cursorId);
+          let blinkCount = 0;
+          const blinkInterval = setInterval(() => {
+            cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
+            blinkCount++;
+            if (blinkCount >= times * 2) { // *2 because each blink is on-off
+              clearInterval(blinkInterval);
+              cursor.style.opacity = '1'; // Ensure cursor is visible before hiding
+              if (callback) callback();
+            }
+          }, 500);
+        }
+
+        // Animation timeline
+        setTimeout(() => {
+          // Step 1: Blink cursor once on first line (0-500ms)
+          blinkCursor('cursor-1', 1, () => {
+            // Step 2: Hide first cursor and show command (500ms)
+            setTimeout(() => {
+              document.getElementById('cursor-1').style.display = 'none';
+              document.getElementById('cmd-1').style.display = 'inline';
+
+              // Step 3: Show info output (700ms)
+              setTimeout(() => {
+                document.getElementById('info-output').style.display = 'block';
+
+                // Step 4: Show second prompt line (900ms)
+                setTimeout(() => {
+                  document.getElementById('prompt-2').style.display = 'flex';
+
+                  // Step 5: Blink cursor on second line (900-1400ms)
+                  blinkCursor('cursor-2', 1, () => {
+                    // Step 6: Hide second cursor and show command (1400ms)
+                    setTimeout(() => {
+                      document.getElementById('cursor-2').style.display = 'none';
+                      document.getElementById('cmd-2').style.display = 'inline';
+
+                      // Step 7: Show links output (1600ms)
+                      setTimeout(() => {
+                        document.getElementById('links-output').style.display = 'block';
+
+                        // Step 8: Show final prompt with continuous blinking cursor (1800ms)
+                        setTimeout(() => {
+                          document.getElementById('final-prompt').style.display = 'flex';
+
+                          // Start continuous cursor blink
+                          setInterval(() => {
+                            const finalCursor = document.getElementById('cursor-final');
+                            finalCursor.style.opacity = finalCursor.style.opacity === '0' ? '1' : '0';
+                          }, 500);
+                        }, 200); // 1800ms total
+                      }, 200); // 1600ms total
+                    }, 0); // 1400ms total
+                  });
+                }, 500); // 900ms total
+              }, 200); // 700ms total
+            }, 0); // 500ms total (after cursor blink)
+          });
+        }, 0);
+      }
+
+      // Start animation after a brief delay to ensure page is loaded
+      setTimeout(startTerminalAnimation, 100);
     </script>
   </body>
 </html>
