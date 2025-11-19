@@ -130,11 +130,35 @@
         const content = document.querySelector('.terminal-content');
         content.classList.add('visible');
 
-        // Initially hide elements that will appear during animation
-        const elementsToHide = ['cmd-1', 'info-output', 'prompt-2', 'cmd-2', 'links-output', 'final-prompt'];
+        // Initially hide elements that will appear during animation using visibility
+        const elementsToHide = ['info-output', 'prompt-2', 'links-output', 'final-prompt'];
         elementsToHide.forEach(id => {
-          document.getElementById(id).style.display = 'none';
+          const el = document.getElementById(id);
+          el.style.visibility = 'hidden';
+          el.style.opacity = '0';
         });
+
+        // Clear command text initially
+        const cmd1 = document.getElementById('cmd-1');
+        const cmd2 = document.getElementById('cmd-2');
+        const cmd1Text = cmd1.textContent;
+        const cmd2Text = cmd2.textContent;
+        cmd1.textContent = '';
+        cmd2.textContent = '';
+
+        // Helper function for typewriter effect
+        function typeText(element, text, speed, callback) {
+          let index = 0;
+          const interval = setInterval(() => {
+            if (index < text.length) {
+              element.textContent += text.charAt(index);
+              index++;
+            } else {
+              clearInterval(interval);
+              if (callback) callback();
+            }
+          }, speed);
+        }
 
         // Helper function to blink cursor a specific number of times
         function blinkCursor(cursorId, times, callback) {
@@ -151,50 +175,65 @@
           }, 500);
         }
 
+        // Helper function to show element smoothly
+        function showElement(id, delay, callback) {
+          setTimeout(() => {
+            const el = document.getElementById(id);
+            el.style.visibility = 'visible';
+            el.style.opacity = '1';
+            el.style.transition = 'opacity 0.2s ease-in';
+            if (callback) callback();
+          }, delay);
+        }
+
         // Animation timeline
         setTimeout(() => {
           // Step 1: Blink cursor once on first line (0-500ms)
           blinkCursor('cursor-1', 1, () => {
-            // Step 2: Hide first cursor and show command (500ms)
+            // Step 2: Hide first cursor and type command (500ms)
             setTimeout(() => {
               document.getElementById('cursor-1').style.display = 'none';
-              document.getElementById('cmd-1').style.display = 'inline';
 
-              // Step 3: Show info output (700ms)
-              setTimeout(() => {
-                document.getElementById('info-output').style.display = 'block';
-
-                // Step 4: Show second prompt line (900ms)
+              // Type out first command with 30ms per character
+              typeText(cmd1, cmd1Text, 30, () => {
+                // Step 3: Show info output after typing completes
                 setTimeout(() => {
-                  document.getElementById('prompt-2').style.display = 'flex';
+                  showElement('info-output', 0);
 
-                  // Step 5: Blink cursor on second line (900-1400ms)
-                  blinkCursor('cursor-2', 1, () => {
-                    // Step 6: Hide second cursor and show command (1400ms)
-                    setTimeout(() => {
-                      document.getElementById('cursor-2').style.display = 'none';
-                      document.getElementById('cmd-2').style.display = 'inline';
+                  // Step 4: Show second prompt line
+                  setTimeout(() => {
+                    showElement('prompt-2', 0);
 
-                      // Step 7: Show links output (1600ms)
+                    // Step 5: Blink cursor on second line
+                    blinkCursor('cursor-2', 1, () => {
+                      // Step 6: Hide second cursor and type command
                       setTimeout(() => {
-                        document.getElementById('links-output').style.display = 'block';
+                        document.getElementById('cursor-2').style.display = 'none';
 
-                        // Step 8: Show final prompt with continuous blinking cursor (1800ms)
-                        setTimeout(() => {
-                          document.getElementById('final-prompt').style.display = 'flex';
+                        // Type out second command
+                        typeText(cmd2, cmd2Text, 30, () => {
+                          // Step 7: Show links output
+                          setTimeout(() => {
+                            showElement('links-output', 0);
 
-                          // Start continuous cursor blink
-                          setInterval(() => {
-                            const finalCursor = document.getElementById('cursor-final');
-                            finalCursor.style.opacity = finalCursor.style.opacity === '0' ? '1' : '0';
-                          }, 500);
-                        }, 200); // 1800ms total
-                      }, 200); // 1600ms total
-                    }, 0); // 1400ms total
-                  });
-                }, 500); // 900ms total
-              }, 200); // 700ms total
-            }, 0); // 500ms total (after cursor blink)
+                            // Step 8: Show final prompt with continuous blinking cursor
+                            setTimeout(() => {
+                              showElement('final-prompt', 0);
+
+                              // Start continuous cursor blink
+                              setInterval(() => {
+                                const finalCursor = document.getElementById('cursor-final');
+                                finalCursor.style.opacity = finalCursor.style.opacity === '0' ? '1' : '0';
+                              }, 500);
+                            }, 200);
+                          }, 200);
+                        });
+                      }, 0);
+                    });
+                  }, 500);
+                }, 200);
+              });
+            }, 0);
           });
         }, 0);
       }
