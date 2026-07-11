@@ -30,3 +30,4 @@ Key things to know when driving:
 - Shell: `help`, `ls links/`, `cat info.txt`, `neofetch`, `clear`, tab completion, ArrowUp history.
 - Probes: `echo <img src=x onerror=alert(1)>` must render as literal text (all output goes through `textContent`); unknown command; `cat ../../etc/passwd`.
 - Check `pageerror`/console errors — should be none.
+- The canonical domain is **mikebird.tech** (see `CNAME`) — NOT mikebirdtech.com, which doesn't resolve. Verify absolute URLs (og:url, og:image, twitter:image) against CNAME, and `curl -I` each one to confirm it resolves.
