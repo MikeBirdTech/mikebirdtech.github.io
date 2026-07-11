@@ -4,6 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mike Bird</title>
+    <meta
+      name="description"
+      content="Mike Bird — Host of the Tool Use Podcast and AI & Engineering Lead at BoxOne Ventures. Helping you interface with the future of AI."
+    />
+
+    <!-- Favicon: green terminal prompt -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%23000000'/%3E%3Ctext x='50' y='70' font-size='52' text-anchor='middle' fill='%2300ff41' font-family='monospace' font-weight='bold'%3E%26gt;_%3C/text%3E%3C/svg%3E"
+    />
 
     <!-- Monospace terminal font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -12,12 +22,6 @@
       href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=VT323&display=swap"
       rel="stylesheet"
     />
-
-    <!-- Font Awesome for icons -->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"
-      defer
-    ></script>
 
     <!-- Your custom styles -->
     <link rel="stylesheet" href="styles.css" />
@@ -29,9 +33,19 @@
     <meta property="og:image" content="https://mikebirdtech.com/me.png" />
     <meta
       property="og:description"
-      content="Host @ Tool Use Podcast| AI ang Engineering Lead @ BoxOne Ventures - Helping you interface with the future of AI"
+      content="Host @ Tool Use Podcast | AI and Engineering Lead @ BoxOne Ventures - Helping you interface with the future of AI"
     />
     <meta property="og:site_name" content="Mike Bird" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@MikeBirdTech" />
+    <meta name="twitter:title" content="Mike Bird" />
+    <meta
+      name="twitter:description"
+      content="Host @ Tool Use Podcast | AI and Engineering Lead @ BoxOne Ventures - Helping you interface with the future of AI"
+    />
+    <meta name="twitter:image" content="https://mikebirdtech.com/me.png" />
   </head>
 
   <body>
@@ -85,7 +99,7 @@
                 <span class="file-icon">📅</span>
                 <span class="file-name">Schedule Meeting</span>
               </a>
-              <a href="https://www.youtube.com/@ToolUsePodcast" class="file-link" target="_blank">
+              <a href="https://www.toolusepodcast.com/" class="file-link" target="_blank">
                 <span class="file-icon">🎙️</span>
                 <span class="file-name">Tool Use Podcast</span>
               </a>
@@ -108,10 +122,21 @@
             </div>
           </div>
 
-          <!-- Final prompt line with continuous cursor -->
+          <!-- Final prompt line with interactive shell input -->
           <div class="terminal-line" id="final-prompt">
             <span class="prompt">guest@mikebird:~$</span>
+            <span class="typed" id="typed"></span>
             <span class="cursor" id="cursor-final">█</span>
+            <input
+              type="text"
+              id="shell-input"
+              class="shell-input"
+              aria-label="Terminal command input"
+              autocomplete="off"
+              autocapitalize="off"
+              autocorrect="off"
+              spellcheck="false"
+            />
           </div>
 
           <div class="footer-line">
@@ -121,125 +146,6 @@
       </div>
     </div>
 
-    <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
-
-      // Animation sequence
-      function startTerminalAnimation() {
-        // Make terminal content visible immediately
-        const content = document.querySelector('.terminal-content');
-        content.classList.add('visible');
-
-        // Initially hide elements that will appear during animation using visibility
-        const elementsToHide = ['info-output', 'prompt-2', 'links-output', 'final-prompt'];
-        elementsToHide.forEach(id => {
-          const el = document.getElementById(id);
-          el.style.visibility = 'hidden';
-          el.style.opacity = '0';
-        });
-
-        // Clear command text initially
-        const cmd1 = document.getElementById('cmd-1');
-        const cmd2 = document.getElementById('cmd-2');
-        const cmd1Text = cmd1.textContent;
-        const cmd2Text = cmd2.textContent;
-        cmd1.textContent = '';
-        cmd2.textContent = '';
-
-        // Helper function for typewriter effect
-        function typeText(element, text, speed, callback) {
-          let index = 0;
-          const interval = setInterval(() => {
-            if (index < text.length) {
-              element.textContent += text.charAt(index);
-              index++;
-            } else {
-              clearInterval(interval);
-              if (callback) callback();
-            }
-          }, speed);
-        }
-
-        // Helper function to blink cursor a specific number of times
-        function blinkCursor(cursorId, times, callback) {
-          const cursor = document.getElementById(cursorId);
-          let blinkCount = 0;
-          const blinkInterval = setInterval(() => {
-            cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
-            blinkCount++;
-            if (blinkCount >= times * 2) { // *2 because each blink is on-off
-              clearInterval(blinkInterval);
-              cursor.style.opacity = '1'; // Ensure cursor is visible before hiding
-              if (callback) callback();
-            }
-          }, 500);
-        }
-
-        // Helper function to show element smoothly
-        function showElement(id, delay, callback) {
-          setTimeout(() => {
-            const el = document.getElementById(id);
-            el.style.visibility = 'visible';
-            el.style.opacity = '1';
-            el.style.transition = 'opacity 0.2s ease-in';
-            if (callback) callback();
-          }, delay);
-        }
-
-        // Animation timeline
-        setTimeout(() => {
-          // Step 1: Blink cursor once on first line (0-500ms)
-          blinkCursor('cursor-1', 1, () => {
-            // Step 2: Hide first cursor and type command (500ms)
-            setTimeout(() => {
-              document.getElementById('cursor-1').style.display = 'none';
-
-              // Type out first command with 30ms per character
-              typeText(cmd1, cmd1Text, 30, () => {
-                // Step 3: Show info output after typing completes
-                setTimeout(() => {
-                  showElement('info-output', 0);
-
-                  // Step 4: Show second prompt line
-                  setTimeout(() => {
-                    showElement('prompt-2', 0);
-
-                    // Step 5: Blink cursor on second line
-                    blinkCursor('cursor-2', 1, () => {
-                      // Step 6: Hide second cursor and type command
-                      setTimeout(() => {
-                        document.getElementById('cursor-2').style.display = 'none';
-
-                        // Type out second command
-                        typeText(cmd2, cmd2Text, 30, () => {
-                          // Step 7: Show links output
-                          setTimeout(() => {
-                            showElement('links-output', 0);
-
-                            // Step 8: Show final prompt with continuous blinking cursor
-                            setTimeout(() => {
-                              showElement('final-prompt', 0);
-
-                              // Start continuous cursor blink
-                              setInterval(() => {
-                                const finalCursor = document.getElementById('cursor-final');
-                                finalCursor.style.opacity = finalCursor.style.opacity === '0' ? '1' : '0';
-                              }, 500);
-                            }, 200);
-                          }, 200);
-                        });
-                      }, 0);
-                    });
-                  }, 500);
-                }, 200);
-              });
-            }, 0);
-          });
-        }, 0);
-      }
-
-      // Start animation after a brief delay to ensure page is loaded
-      setTimeout(startTerminalAnimation, 100);
-    </script>
+    <script src="script.js" defer></script>
   </body>
 </html>

@@ -289,6 +289,65 @@ body::before {
 }
 
 /* -----------------------------------------
+   INTERACTIVE SHELL
+----------------------------------------- */
+#final-prompt {
+  cursor: text;
+}
+
+/* Real input stays invisible; its value is mirrored into .typed */
+.shell-input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  border: none;
+  padding: 0;
+  font-size: 16px; /* prevents iOS zoom-on-focus */
+}
+
+.typed {
+  color: var(--terminal-green);
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.cursor.blinking {
+  animation: blink 1s step-end infinite;
+}
+
+.shell-output pre {
+  font-family: inherit;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--terminal-green);
+  margin: 0;
+}
+
+.shell-output pre.ascii {
+  white-space: pre;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
+}
+
+.shell-output pre.dim,
+.shell-output .dim {
+  color: var(--terminal-green-dim);
+}
+
+.shell-output a {
+  color: var(--terminal-green-bright);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.shell-output a:hover {
+  text-shadow: 0 0 8px rgba(0, 255, 65, 0.8);
+}
+
+/* -----------------------------------------
    FOOTER
 ----------------------------------------- */
 .footer-line {
