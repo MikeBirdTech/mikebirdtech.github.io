@@ -22,4 +22,4 @@ A retro terminal-themed personal website with a CRT screen aesthetic, featuring 
 
 ## Viewing
 
-Open `index.html` in a web browser or visit [mikebirdtech.com](https://mikebirdtech.com)
+Open `index.html` in a web browser or visit [mikebird.tech](https://mikebird.tech)

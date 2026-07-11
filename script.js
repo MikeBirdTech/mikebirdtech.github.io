@@ -1,4 +1,4 @@
-/* Terminal boot animation + interactive shell for mikebirdtech.com */
+/* Terminal boot animation + interactive shell for mikebird.tech */
 
 const SITE_LAUNCH = Date.UTC(2024, 7, 18); // first commit: 2024-08-18
 const PROMPT = "guest@mikebird:~$";
@@ -331,7 +331,7 @@ function initShell() {
         [
           "        ▄▄▄▄▄▄        guest@mikebird",
           "      ▄█  ▄▄  █▄      ---------------",
-          "     ██  ▀██▀  ██     Host: mikebirdtech.com",
+          "     ██  ▀██▀  ██     Host: mikebird.tech",
           "     ██   ▀▀   ██     OS: MikeOS (phosphor edition)",
           "     ██ ▄▀  ▀▄ ██     Shell: guest-sh 1.0",
           "      ▀█▄▄▄▄▄▄█▀      Theme: green on black",
